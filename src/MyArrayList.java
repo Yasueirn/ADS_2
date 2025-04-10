@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class MyArrayList<T> implements MyList<T>{
@@ -91,7 +92,19 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public void sort() {
+    public void sort(Comparator<T> cmp) {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                T a = (T) array[j];
+                T b = (T) array[j + 1];
+
+                if (cmp.compare(a, b) > 0) {
+                    Object temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
 
     }
 
@@ -151,7 +164,23 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<T> iterator() {
+        return new MyIterator();
+    }
+
+    private class MyIterator implements Iterator<T> {
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor != size;
+        }
+
+        @Override
+        public T next() {
+            T nextItem = get(cursor);
+            cursor++;
+            return nextItem;
+        }
     }
 }

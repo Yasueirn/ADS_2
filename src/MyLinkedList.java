@@ -167,8 +167,16 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public void sort() {
-        return;
+    public void sort(Comparator<T> cmp) {
+        for (int i = 0; i < size - 1; i++) {
+            for (MyNode<T> j = head; j.next != null; j = j.next) {
+                if (cmp.compare(j.data, j.next.data) > 0) {
+                    T temp =j.data;
+                    j.data = j.next.data;
+                    j.next.data = temp;
+                }
+            }
+        }
     }
 
     @Override
