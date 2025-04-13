@@ -30,9 +30,3 @@ MyMinHeap is a custom implementation of a min-heap, a complete binary tree where
 
 MyList Interface
 The MyList interface defines a common set of methods that all list-like data structures should implement.
-
-removeLast(): Removes the last element in the list.
-
-clear(): Clears all elements from the list.
-
-isEmpty(): Checks whether the list is empty.
