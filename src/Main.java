@@ -1,14 +1,24 @@
 public class Main {
     public static void main(String[] args) {
-        MyArrayList<String> list2 = new MyArrayList<>();
+        MyMinHeap<Integer> heap = new MyMinHeap<>();
 
-        list2.add("One");
-        list2.add("Two");
-        list2.add("Three");
-        list2.add("Four");
-        list2.add(1, "No");
+        heap.insert(5);
+        heap.insert(3);
+        heap.insert(8);
+        heap.insert(1);
+        heap.insert(6);
 
-        System.out.println(list2.indexOf("No"));
+        System.out.println(heap.size());
+        System.out.println(heap.getMin());
+
+        while (!heap.empty()) {
+            System.out.println(heap.extractMin());
+        }
+
+        System.out.println(heap.size());
+    }
+
+
+
 
     }
-}

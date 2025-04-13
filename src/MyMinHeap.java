@@ -1,8 +1,13 @@
 public class MyMinHeap<T extends Comparable<T>> {
+
     private MyArrayList<T> heap = new MyArrayList<>();
 
+    public MyMinHeap() {
+        heap.add(null);
+    }
+
     public boolean empty() {
-        return heap.size() == 0;
+        return size() == 0;
     }
 
     public int size() {
@@ -14,17 +19,22 @@ public class MyMinHeap<T extends Comparable<T>> {
     }
 
     public T extractMin() {
+        if (empty()){
+            return null;
+        }
+
         T min = heap.get(1);
-        T last = heap.get(heap.size());
+        T last = heap.get(heap.size() -1);
         heap.set(1, last);
         heap.removeLast();
         heapify(1);
+
         return min;
     }
 
     public void insert(T item) {
         heap.add(item);
-        traverseUp(heap.size());
+        traverseUp(heap.size() - 1);
     }
 
     private void heapify(int index) {
@@ -32,11 +42,11 @@ public class MyMinHeap<T extends Comparable<T>> {
         int right = rightChildOf(index);
         int smallest = index;
 
-        if (left <= heap.size() && heap.get(left).compareTo(heap.get(smallest)) < 0) {
+        if (left <= size() && heap.get(left).compareTo(heap.get(smallest)) < 0) {
             smallest = left;
         }
 
-        if (right <= heap.size() && heap.get(right).compareTo(heap.get(smallest)) < 0) {
+        if (right <= size() && heap.get(right).compareTo(heap.get(smallest)) < 0) {
             smallest = right;
         }
 
